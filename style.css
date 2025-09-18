@@ -1,0 +1,89 @@
+/* styles.css
+   Author: you (fill in README)
+   External CSS only. Responsive layout using Flexbox & Grid.
+*/
+
+/* Reset-ish */
+* { box-sizing: border-box; }
+html,body { margin:0; padding:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color: #222; background:#f8f9fb; }
+.container { max-width:1100px; margin:0 auto; padding:0 1rem; }
+
+/* Topbar */
+.topbar { position:fixed; top:0; left:0; right:0; background: #0b3d91; color:#fff; z-index:1000; box-shadow:0 2px 8px rgba(0,0,0,.12); }
+.topbar-inner { display:flex; align-items:center; gap:1rem; padding:0.6rem 1rem; }
+.brand { display:flex; align-items:center; gap:.6rem; }
+#logo { width:40px; height:40px; object-fit:cover; border-radius:6px; }
+.site-title { font-weight:700; letter-spacing:.4px; }
+
+.main-nav { margin-left:1rem; display:flex; gap:0.8rem; }
+.main-nav a { color:#fff; text-decoration:none; padding:.3rem .5rem; border-radius:4px; font-weight:600; }
+.main-nav a:hover { background:rgba(255,255,255,0.08); }
+
+/* login mini */
+.login-box { margin-left:auto; }
+.login-box form { display:flex; gap:.4rem; align-items:center; }
+.login-box input { padding:.25rem .4rem; border-radius:4px; border:1px solid rgba(255,255,255,.15); background:transparent; color:#fff; min-width:80px; }
+.login-box .btn { padding:.3rem .6rem; border-radius:6px; border:none; cursor:pointer; background:#ffd166; color:#000; }
+
+/* Main */
+main { padding-top:86px; padding-bottom:3rem; }
+
+/* Banner */
+.banner { background: linear-gradient(135deg,#2b6cb0,#5a8bd2); color:#fff; padding:2.4rem 1rem; border-radius:8px; margin-top:1rem; }
+.banner-inner { display:flex; flex-direction:column; gap:.6rem; align-items:flex-start; max-width:800px; }
+.banner .btn { margin-top:.6rem; }
+
+/* Buttons */
+.btn { background:#0b3d91; color:#fff; border:none; padding:.6rem 1rem; border-radius:8px; cursor:pointer; }
+.btn.large { padding: .8rem 1.2rem; font-size:1.05rem; }
+.btn.small { padding:.25rem .5rem; font-size:.9rem; }
+.btn.alt { background:transparent; border:1px solid #0b3d91; color:#0b3d91; }
+
+/* Sections */
+section { margin-top:1.2rem; padding:1rem; background:#fff; border-radius:8px; box-shadow:0 1px 6px rgba(18,24,40,.04); }
+.gallery-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap:0.6rem; }
+.gallery-grid figure { margin:0; overflow:hidden; border-radius:8px; background:#efefef; }
+.gallery-grid img { width:100%; height:150px; object-fit:cover; display:block; }
+.gallery-grid figcaption { padding:.4rem; font-size:.9rem; }
+
+/* Register form layout */
+.register-section form { display:grid; grid-template-columns: 1fr; gap:0.8rem; }
+@media(min-width:900px){
+  .register-section form { grid-template-columns: 1fr 360px; align-items:start; }
+  .register-section form > fieldset { grid-column: span 1; }
+  .register-section form > fieldset:nth-child(1){ grid-column: 1 / span 2; } /* personal details across width */
+  .register-section form > fieldset:nth-child(6){ grid-column: 1 / span 2; } /* utilities across width */
+}
+
+/* Fieldset styling */
+fieldset { border:1px solid #e6e9ef; padding:0.8rem; border-radius:8px; }
+legend { padding:0 .4rem; font-weight:700; }
+label { display:block; margin-top:.45rem; font-size:.95rem; }
+input[type="text"], input[type="email"], input[type="password"], input[type="tel"],
+input[type="date"], input[type="url"], input[type="number"], textarea, select, input[type="search"], input[type="file"] {
+  width:100%; padding:.45rem .6rem; border-radius:6px; border:1px solid #d6dde8; margin-top:.25rem;
+}
+
+/* Utilities */
+.utility { border-top:1px dashed #eee; padding-top:.5rem; margin-top:.5rem; }
+.currency-actions { display:flex; gap:.5rem; margin-top:.4rem; }
+
+/* calc result */
+.calc-result { margin-top:.5rem; font-weight:700; background:#f2f6ff; padding:.4rem .6rem; border-radius:6px; }
+
+/* footer */
+.site-footer { margin-top:2rem; padding:1rem 0; text-align:center; color:#666; }
+
+/* screen-reader only */
+.sr-only { position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+
+/* focus and invalid styling */
+input:invalid, textarea:invalid, select:invalid { outline:2px solid rgba(200,30,30,.08); box-shadow:0 0 0 3px rgba(200,30,30,.03) inset; }
+input:focus, textarea:focus, select:focus { box-shadow:0 4px 12px rgba(11,61,145,.08); border-color:#0b3d91; }
+
+/* small screens */
+@media(max-width:599px){
+  .topbar-inner { flex-wrap:wrap; gap:.5rem; }
+  .main-nav { order:3; width:100%; justify-content:space-around; }
+  .login-box { order:2; width:100%; display:flex; justify-content:flex-end; }
+}

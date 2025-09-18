@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TechFest 2025 — Event Portal</title>
+
+  <!-- external CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- jQuery CDN (required for jQuery tasks) -->
+  <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-3gJwYp8X+0qv1p2bL6X6y8m3q9bX1oY6s8bq0Q/8mYc="
+    crossorigin="anonymous"
+    defer
+  ></script>
+
+  <!-- site JS -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Fixed horizontal nav with logo, links, and login box -->
+  <header class="topbar" role="banner">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <img src="tf.png" alt="TechFest Logo" id="logo" />
+        <span class="site-title">TechFest 2025</span>
+      </div>
+
+      <nav class="main-nav" role="navigation" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#about">About</a>
+        <a href="#register">Register</a>
+      </nav>
+
+      <div class="login-box" aria-label="Login box">
+        <form id="mini-login" onsubmit="event.preventDefault(); alert('Login simulated');" novalidate>
+          <label for="mini-user" class="sr-only">User</label>
+          <input id="mini-user" name="mini-user" type="text" placeholder="user" />
+          <label for="mini-pass" class="sr-only">Pass</label>
+          <input id="mini-pass" name="mini-pass" type="password" placeholder="password" />
+          <button type="submit" class="btn small">Log in</button>
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <main id="home" class="container">
+    <!-- Banner -->
+    <section class="banner" role="region" aria-label="Event banner">
+      <div class="banner-inner">
+        <h1>Department TechFest — Code, Create, Connect</h1>
+        <p>Showcase projects, workshops, and competitions — join the celebration.</p>
+        <a href="#register" class="btn large">Register Now</a>
+      </div>
+    </section>
+
+    <!-- Responsive image gallery -->
+    <section id="gallery" class="gallery-section" aria-label="Image gallery">
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+        <figure><img src="work.jpg" alt="Students at a workshop" /><figcaption>Workshops</figcaption></figure>
+        <figure><img src="demo.png" alt="Project demo" /><figcaption>Live Demos</figcaption></figure>
+        <figure><img src="panel.jpg" alt="Panel discussion" /><figcaption>Panels</figcaption></figure>
+        <figure><img src="sih.jpg" alt="Hackathon" /><figcaption>Hackathon</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- Introduction section -->
+    <section id="about" class="intro" aria-label="About section">
+      <h2>About TechFest 2025</h2>
+      <p>
+        Our annual TechFest brings students, faculty and industry mentors together to
+        present innovative projects, attend workshops, and compete in challenge events.
+        This portal registers participants and provides helpful utilities.
+      </p>
+    </section>
+
+    <!-- Single registration form -->
+    <section id="register" class="register-section" aria-label="Registration form">
+      <h2>Online Registration</h2>
+
+      <!-- IMPORTANT: Only one <form> in entire page -->
+      <form id="registrationForm" action="/serverlogic" method="post" enctype="multipart/form-data" novalidate>
+        <!-- Basic details -->
+        <fieldset>
+          <legend>Personal Details</legend>
+
+          <label for="fullname">Full name</label>
+          <input id="fullname" name="fullname" type="text" required placeholder="Your name" />
+
+          <label for="regno">Registration No.</label>
+          <input id="regno" name="regno" type="search" required placeholder="e.g., 20XXCS001" />
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required placeholder="name@example.com" />
+
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" type="tel" pattern="^\d{10}$" required placeholder="10-digit number" />
+
+          <label for="password">Set password</label>
+          <input id="password" name="password" type="password" minlength="6" required />
+
+          <label for="website">Portfolio (optional)</label>
+          <input id="website" name="website" type="url" placeholder="https://example.com" />
+
+          <label for="dob">Date of birth</label>
+          <input id="dob" name="dob" type="date" required />
+        </fieldset>
+
+        <!-- Event choices (radio) -->
+        <fieldset>
+          <legend>Event Choices</legend>
+          <p>Select one event you want to participate in:</p>
+          <label><input type="radio" name="eventchoice" value="hackathon" required /> Hackathon</label>
+          <label><input type="radio" name="eventchoice" value="project-demo" /> Project Demo</label>
+          <label><input type="radio" name="eventchoice" value="workshop" /> Workshop</label>
+        </fieldset>
+
+        <!-- Preferences (>=4 checkboxes) -->
+        <fieldset>
+          <legend>Preferences</legend>
+          <label><input type="checkbox" name="prefs" value="networking" /> Networking</label>
+          <label><input type="checkbox" name="prefs" value="mentorship" /> Mentorship</label>
+          <label><input type="checkbox" name="prefs" value="prizes" /> Prizes</label>
+          <label><input type="checkbox" name="prefs" value="internships" /> Internship leads</label>
+          <label><input type="checkbox" name="prefs" value="volunteer" /> Volunteer</label>
+        </fieldset>
+
+        <!-- Select with >=5 options -->
+        <fieldset>
+          <legend>Department / Stream</legend>
+          <label for="department">Choose your department</label>
+          <select id="department" name="department" required>
+            <option value="">-- select department --</option>
+            <option value="cse">Computer Science</option>
+            <option value="ece">Electronics</option>
+            <option value="mech">Mechanical</option>
+            <option value="civil">Civil</option>
+            <option value="it">Information Technology</option>
+            <option value="others">Others</option>
+          </select>
+        </fieldset>
+
+        <!-- File upload -->
+        <fieldset>
+          <legend>Photo (for ID)</legend>
+          <label for="photo">Upload a photo (image only)</label>
+          <input id="photo" name="photo" type="file" accept="image/*" required />
+          <small>Accepted: .png .jpg .jpeg — .exe/.bat rejected by browser & JS</small>
+        </fieldset>
+
+        <!-- Textarea -->
+        <fieldset>
+          <legend>About your project / notes</legend>
+          <label for="notes">Short description</label>
+          <textarea id="notes" name="notes" rows="4" minlength="20" placeholder="Tell us about your idea..." required></textarea>
+        </fieldset>
+
+        <!-- Required HTML5 types present: number (for team size) -->
+        <fieldset>
+          <legend>Team info</legend>
+          <label for="teamsize">Team size</label>
+          <input id="teamsize" name="teamsize" type="number" min="1" max="10" value="1" required />
+        </fieldset>
+
+        <!-- Progress element -->
+        <fieldset>
+          <legend>Form progress</legend>
+          <label for="formProgress">Completion</label>
+          <progress id="formProgress" value="0" max="100">0%</progress>
+          <div id="progress-text" aria-live="polite">0% completed</div>
+        </fieldset>
+
+        <!-- Utilities (calculators) -->
+        <fieldset>
+          <legend>Utilities</legend>
+
+          <!-- Plain JS BMI Calculator -->
+          <div class="utility" id="bmi-utility">
+            <h3>BMI Calculator (plain JS)</h3>
+            <label for="height">Height (cm)</label>
+            <input id="height" name="height" type="number" min="50" max="250" placeholder="cm" />
+            <label for="weight">Weight (kg)</label>
+            <input id="weight" name="weight" type="number" min="20" max="300" placeholder="kg" />
+            <button type="button" id="bmi-calc">Calculate BMI</button>
+            <div id="bmi-result" class="calc-result" aria-live="polite">—</div>
+          </div>
+
+          <!-- jQuery Currency Converter -->
+          <div class="utility" id="currency-utility">
+            <h3>Currency (jQuery demo)</h3>
+            <label for="amount">Amount (INR)</label>
+            <input id="amount" name="amount" type="number" min="0" step="0.01" placeholder="1000" />
+            <label for="to-currency">Convert to</label>
+            <select id="to-currency" name="to-currency">
+              <option value="usd">USD</option>
+              <option value="eur">EUR</option>
+              <option value="gbp">GBP</option>
+              <option value="aed">AED</option>
+              <option value="inr">INR (same)</option>
+            </select>
+            <div class="currency-actions">
+              <button type="button" id="convert-btn">Convert</button>
+              <button type="button" id="swap-btn">Swap (INR ↔ selected)</button>
+            </div>
+            <div id="currency-result" class="calc-result" aria-live="polite">—</div>
+          </div>
+        </fieldset>
+
+        <!-- required HTML5 input types: url already used; include a search earlier; submit/reset -->
+        <fieldset class="form-actions">
+          <button type="submit" id="submitBtn" class="btn">Submit Registration</button>
+          <button type="reset" id="resetBtn" class="btn alt">Reset</button>
+        </fieldset>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Department TechFest 2025 — &copy; <span id="year"></span></p>
+    </div>
+  </footer>
+</body>
+</html>
